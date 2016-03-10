@@ -1,4 +1,5 @@
 # Rappel Git
+[![PDF Status](https://www.sharelatex.com/github/repos/MaisonLogicielLibre/git-cheatsheet/builds/latest/badge.svg)](https://www.sharelatex.com/github/repos/MaisonLogicielLibre/git-cheatsheet/builds/latest/output.pdf)
 
 ## Configuration initial
 
