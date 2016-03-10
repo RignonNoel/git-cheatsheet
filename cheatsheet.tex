@@ -1,0 +1,224 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{titlesec}
+\usepackage{sectsty}
+
+\sectionfont{\vspace{0.5em}\fontsize{12}{15}\selectfont}
+
+% French
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ae,aeguill}
+\usepackage[canadian]{babel}
+
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+
+
+% Redefine section commands to use less space
+\makeatletter
+\titlespacing{\section}{0pt}{1ex plus 1ex minus 1ex}{1ex plus 1ex minus 1ex}
+
+\makeatother
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 1ex}
+
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\textbf{Rappel Git}} \\
+\end{center}
+
+%%%%%%%%%%%%%%%% Configuration initial %%%%%%%%%%%%%%%%
+\section{Configuration initial}
+\begin{lstlisting}[language=bash]
+git config --global user.name "[name]"
+\end{lstlisting}
+Configure le nom d’utilisateur associé aux futurs commits.
+\begin{lstlisting}[language=bash]
+git config --global user.email "[email]"
+\end{lstlisting}
+Configure le courriel associer au futur commits.
+
+
+%%%%%%%%%%%%%%%% Créer un nouveau dépôt (repository) %%%%%%%%%%%%%%%%
+\section{Créer un nouveau dépôt (repository)}
+\begin{lstlisting}[language=bash]
+git init [project-name]
+\end{lstlisting}
+Crée un nouveau dépôt (repository) en local.\\
+\begin{lstlisting}[language=bash]
+git clone [url]
+\end{lstlisting}
+Télécharge un dépôt (repository) et tout son historique de version.
+
+
+%%%%%%%%%%%%%%%% Créer un nouveau dépôt (repository) %%%%%%%%%%%%%%%%
+\section{Gestion des fichiers}
+\begin{lstlisting}[language=bash]
+git rm [file]
+\end{lstlisting}
+Supprime le fichier et notifie la suppression pour le prochain commit.\\
+\begin{lstlisting}[language=bash]
+git rm --cached [file]
+\end{lstlisting}
+Supprime le fichier de la liste des fichiers suivis par git, mais ne touche pas au fichier local.\\
+\begin{lstlisting}[language=bash]
+git mv [file-original] [file-renamed]
+\end{lstlisting}
+Renomme le fichier et notifie le changement pour le\\
+prochain commit.
+
+%%%%%%%%%%%%%%%% Supprimer/Restaurer temporairement des changements %%%%%%%%%%%%%%%%
+\section{Supprimer/Restaurer temporairement des changements}
+\begin{lstlisting}[language=bash]
+git stash
+\end{lstlisting}
+Cache temporairement tous les changements non commités dans un paquet.
+\begin{lstlisting}[language=bash]
+git stash pop
+\end{lstlisting}
+Restaure le dernier paquet de changement caché.
+\begin{lstlisting}[language=bash]
+git stash list
+\end{lstlisting}
+Liste tous les paquets de changement caché.
+\begin{lstlisting}[language=bash]
+git stash drop
+\end{lstlisting}
+Supprime le dernier paquet de changement caché.
+
+%%%%%%%%%%%%%%%% Effectuer des changements %%%%%%%%%%%%%%%%
+\section{Effectuer des changements}
+\begin{lstlisting}[language=bash]
+git status
+\end{lstlisting}
+Liste tous les nouveaux fichiers et tous les fichiers ayant subi un changement qui vont être présents dans la nouvelle version.
+\begin{lstlisting}[language=bash]
+git add [file]
+\end{lstlisting}
+Ajoute les changements actuels du fichier à la liste des changements devant être dans la nouvelle version.
+\begin{lstlisting}[language=bash]
+git reset [file]
+\end{lstlisting}
+Enlève le fichier de la liste des changements devant être dans la nouvelle version.
+\begin{lstlisting}[language=bash]
+git commit -m"[descriptive message]"
+\end{lstlisting}
+Sauvegarde la nouvelle version de manière permanente dans le gestionnaire de version.
+
+%%%%%%%%%%%%%%%% Les branches %%%%%%%%%%%%%%%%
+\section{Les branches}
+\begin{lstlisting}[language=bash]
+git branch
+\end{lstlisting}
+Liste toutes les branches présentes localement sur le dépôt (repository)
+\begin{lstlisting}[language=bash]
+git branch [branch-name]
+\end{lstlisting}
+Crée une nouvelle branche
+\begin{lstlisting}[language=bash]
+git checkout [branch-name]
+\end{lstlisting}
+Déplace l'utilisateur vers la branche spécifiée et mets à jour les fichiers présents dans le dépôt.
+\begin{lstlisting}[language=bash]
+git merge [branch-name]
+\end{lstlisting}
+Combine la branche spéifiée avec la branche courante.
+\begin{lstlisting}[language=bash]
+git branch -d [branch-name]
+\end{lstlisting}
+Supprime la branche spécifiée.
+
+%%%%%%%%%%%%%%%% Analyser l'historique de version %%%%%%%%%%%%%%%%
+\section{Analyser l'historique de version}
+\begin{lstlisting}[language=bash]
+git log
+\end{lstlisting}
+Liste tout les commits de la branche courante.
+\begin{lstlisting}[language=bash]
+git log --follow [file]
+\end{lstlisting}
+Liste tous les commits relatifs au fichier, incluant les changements de nom.
+\begin{lstlisting}[language=bash]
+git diff [first-branch]...[second-branch]
+\end{lstlisting}
+Montre les différences de contenu entre deux branches.
+\begin{lstlisting}[language=bash]
+git show [commit]
+\end{lstlisting}
+Montre le détail du commit spécifié (changement, nom, heure, auteur, ..).
+
+%%%%%%%%%%%%%%%% Modifier des commits %%%%%%%%%%%%%%%%
+\section{Modifier des commits}
+\begin{lstlisting}[language=bash]
+git reset [commit]
+\end{lstlisting}
+Annule tous les commits effectués après le commit spécifié, cela préserve donc les changements.
+\begin{lstlisting}[language=bash]
+git reset --hard [commit]
+\end{lstlisting}
+Supprime tous les commits effectués après le commit spécifié, les changements sont donc supprimés
+
+%%%%%%%%%%%%%%%% Synchroniser les changements %%%%%%%%%%%%%%%%
+\section{Synchroniser les changements}
+\begin{lstlisting}[language=bash]
+git fetch [remote]
+\end{lstlisting}
+Synchronise en local l'historique du dépôt (repository) distant.
+\begin{lstlisting}[language=bash]
+git merge [remote]/[branch]
+\end{lstlisting}
+Combine la branche distante avec la branche locale.
+\begin{lstlisting}[language=bash]
+git push [remote] [branch]
+\end{lstlisting}
+Téléverse tous les commits de la branche locale sur le dépôt (repository) distant.
+\begin{lstlisting}[language=bash]
+git pull [remote] [branch]
+\end{lstlisting}
+Télécharge tout les nouveaux changements présent sur le dépôt et les applique en local.
+
+\end{multicols}
+\end{document}
