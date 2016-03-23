@@ -5,16 +5,20 @@
 \usepackage[landscape]{geometry}
 \usepackage{titlesec}
 \usepackage{sectsty}
+\usepackage{fancyhdr}
 
 \sectionfont{\vspace{0.5em}\fontsize{12}{15}\selectfont}
 
-% French
+% License
+\usepackage{ccicons}
 
+% French
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{ae,aeguill}
 \usepackage[canadian]{babel}
 
+% Listings
 \usepackage{listings}
 \lstset{basicstyle=\ttfamily,
   showstringspaces=false,
@@ -22,18 +26,7 @@
   keywordstyle=\color{blue}
 }
 
-% This sets page margins to .5 inch if using letter paper, and to 1cm
-% if using A4 paper. (This probably isn't strictly necessary.)
-% If using another size paper, use default 1cm margins.
-\ifthenelse{\lengthtest { \paperwidth = 11in}}
-	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
-	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
-		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
-		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
-	}
-
-% Turn off header and footer
-\pagestyle{empty}
+\geometry{top=1in,left=0.75in,right=0.75in,bottom=1in}
 
 
 % Redefine section commands to use less space
@@ -47,6 +40,17 @@
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt plus 1ex}
+
+%Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\Large{\textbf{Rappel Git}}}
+\rhead{\scriptsize{version: 0.1}}
+\lfoot{\ccbysa}
+\rfoot{\scriptsize{https://github.com/MaisonLogicielLibre/git-cheatsheet}}
+
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
 
 
 % -----------------------------------------------------------------------
@@ -65,10 +69,6 @@
 \setlength{\postmulticols}{1pt}
 \setlength{\multicolsep}{1pt}
 \setlength{\columnsep}{2pt}
-
-\begin{center}
-     \Large{\textbf{Rappel Git}} \\
-\end{center}
 
 %%%%%%%%%%%%%%%% Configuration initial %%%%%%%%%%%%%%%%
 \section{Configuration initial}
@@ -220,6 +220,7 @@ git pull [remote] [branch]
 \end{lstlisting}
 Télécharge tout les nouveaux changements présent sur le dépôt et les applique en local.
 
+\newpage
 %%%%%%%%%%%%%%%% Résoudre un conflit de merge %%%%%%%%%%%%%%%%
 \section{Résoudre un conflit de merge}
 Un conflit survient lorsque 2 branches changent la même partie d'un fichier. Git
@@ -239,7 +240,8 @@ git add [file]
 git commit
 \end{lstlisting}
 Un merge commit est le commit résultant de la résolution d'un conflit de merge.
-
+\vfill
+\vspace{1em}
 \end{multicols*}
 
 \end{document}
