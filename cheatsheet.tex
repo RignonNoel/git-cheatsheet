@@ -55,7 +55,7 @@
 
 \raggedright
 \footnotesize
-\begin{multicols}{3}
+\begin{multicols*}{3}
 
 
 % multicol parameters
@@ -220,5 +220,26 @@ git pull [remote] [branch]
 \end{lstlisting}
 Télécharge tout les nouveaux changements présent sur le dépôt et les applique en local.
 
-\end{multicols}
+%%%%%%%%%%%%%%%% Résoudre un conflit de merge %%%%%%%%%%%%%%%%
+\section{Résoudre un conflit de merge}
+Un conflit survient lorsque 2 branches changent la même partie d'un fichier. Git
+ajoute un bloc dans le fichier qui contient les deux versions:
+\begin{lstlisting}[language=c]
+La maison du logiciel libre
+<<<<<<< HEAD
+MLL
+=======
+ML2
+>>>>>>> branch-develop
+\end{lstlisting}
+Éditez le fichier pour conserver la version désirée. Ajoutez le fichier à la
+liste des changements et faites un merge commit.
+\begin{lstlisting}[language=bash]
+git add [file]
+git commit
+\end{lstlisting}
+Un merge commit est le commit résultant de la résolution d'un conflit de merge.
+
+\end{multicols*}
+
 \end{document}
