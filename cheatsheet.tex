@@ -240,8 +240,23 @@ git add [file]
 git commit
 \end{lstlisting}
 Un merge commit est le commit résultant de la résolution d'un conflit de merge.
-\vfill
 \vspace{1em}
+\section{Gérer les dépôts distants}
+Lorsque vous voulez contribuer à des projets libres, il est très important de
+structurer ses dépôts en conséquence. Le dépôt upstream doit pointer vers le
+dépôt maître alors que le dépôt origin doit pointer vers votre fourche(fork).
+Pour ajouter un dépôt
+\begin{lstlisting}[language=bash]
+git remote add [remote] [url]
+\end{lstlisting}
+Pour renommer un dépôt
+\begin{lstlisting}[language=bash]
+git remote rename [old] [new]
+\end{lstlisting}
+Pour changer l'url d'un dépôt
+\begin{lstlisting}[language=c]
+git remote set-url [remote] [url]
+\end{lstlisting}
 \end{multicols*}
 
 \end{document}
